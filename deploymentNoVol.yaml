@@ -25,15 +25,6 @@ spec:
             value: "pq123"  
           - name: PGDATA
             value: /var/lib/postgresql/data/pgdata
-          volumeMounts:
-            - name: db-vol
-              mountPath: "/var/lib/postgresql/data"
-              subPath: "pgdata"
-      volumes:
-        - name: db-vol
-          hostPath:
-            path: /k3d/images
-            type: Directory
 ---
 apiVersion: v1
 kind: Service
