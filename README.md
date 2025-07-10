@@ -10,7 +10,7 @@ k3d cluster create --servers 1 --agents 3 -p "5432:30000@loadbalancer"
 ## Execução
 
 ```bash
-kubectl apply -f deployment.yaml
+kubectl apply -f deploymentNoVol.yaml
 ```
 
 ### Popular Postgre
@@ -39,4 +39,20 @@ Deletar pod:
 ```bash
 kubectl delete pod {{name}}
 ```
-Quando o deploy criar um novo pod o banco de dados foi perdido pois nao temos volume mapeado.
+Quando o deploy cria um novo pod o banco de dados foi perdido pois nao temos volume mapeado.
+
+### Teste Com Volume
+
+```bash
+kubectl delete -f deploymentNoVol.yaml
+kubectl apply -f deployment.yaml
+```
+
+Recriar as tabela e dados do BD com o mesmo script
+
+Deletar pod
+```bash
+kubectl delete pod {{name}}
+```
+
+Os dados serão mantidos com o pod recriado
